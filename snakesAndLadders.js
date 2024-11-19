@@ -1,4 +1,4 @@
-let player = ""
+let player = "";
 function assignColor(color){
             player.value = color;
 }
