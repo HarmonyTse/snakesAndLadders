@@ -24,7 +24,11 @@ let diceRoll = Math.floor(Math.random()*6)+1;
 let position1 = 1;
 let position2 = 1;
 function movePlayer1(){
-  
+
+Player moves right one square by adding 110 px
+Players moves up one square by subtracting 110 px
+
+PLAYER IS AT 1: LEFT 120 px TOP: 1050 px
 }
 
 function movePlayer2(){
