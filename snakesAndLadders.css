@@ -3,7 +3,7 @@
   z-index: 0;
 }
 
-#red{
+#player{
   z-index: 1;
-  content: player;
+  content: playerColor;
 }
