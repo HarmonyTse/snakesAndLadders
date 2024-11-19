@@ -1,4 +1,7 @@
-
+let player = ""
+function assignColor(color){
+            player.value = color;
+}
 /*
 let grid = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91], 
             [81, 82, 83, 84, 85, 86, 87, 88, 89, 90], 
