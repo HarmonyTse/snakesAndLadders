@@ -1,7 +1,9 @@
 #board{
+  position: absolute;
   z-index: 0;
 }
 
 #red{
+  position: absolute;
   z-index: 1;
 }
