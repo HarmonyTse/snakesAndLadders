@@ -6,4 +6,7 @@
 #red{
   position: absolute;
   z-index: 1;
+  left: 1px;
+  top: 1px;
+  
 }
