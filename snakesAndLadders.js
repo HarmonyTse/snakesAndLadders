@@ -1,6 +1,6 @@
-let player = "";
+let playerColor = "";
 function assignColor(color){
-            player.value = color;
+            playerColor.value = color;
 }
 /*
 let grid = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91], 
