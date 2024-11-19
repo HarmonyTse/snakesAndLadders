@@ -1,8 +1,6 @@
 #board{
   position: absolute;
   z-index: 0;
-  left: 80 px;
-  top: 80 px;
 }
 
 #red{
