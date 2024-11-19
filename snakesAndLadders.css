@@ -4,9 +4,6 @@
 }
 
 #red{
-  position: absolute;
   z-index: 1;
-  left: 1 px;
-  top: 1 px;
   content: player;
 }
