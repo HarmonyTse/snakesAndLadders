@@ -5,5 +5,6 @@
 
 #player{
   z-index: 1;
-  content: playerColor;
+  left: 1 px;
+  top: 1 px;
 }
