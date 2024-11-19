@@ -1,5 +1,6 @@
 function assignColor(color){
-            img.src = color;
+            let playerColor = document.getElementById("player");
+            playerColor.src = color;
 }
 /*
 let grid = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91], 
