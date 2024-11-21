@@ -25,57 +25,30 @@ let position1 = 1;
 let position2 = 1;
 
 /*Still have to make image move*/
-function movePlayer1(){
-    if(position1 + diceRoll < 100)
+function movePlayer(position){ /*call position 1 or position 2*/
+    if(position + diceRoll < 100)
     {
-        position1 = position1 + diceRoll;
+        position = position + diceRoll;
     }
     for(let i == 0; i < startSnake.length; i++)
     {
-        if(position1 == startSnake[i])
+        if(position == startSnake[i])
         {
-            position1 = endSnake[i];
+            position = endSnake[i];
         }
     }
     for(let i == 0; i < startLadder.length; i++)
     {
-        if(position1 == startLadder[i])
+        if(position == startLadder[i])
         {
-            position1 = endLadder[i];
+            position = endLadder[i];
         }
     }
-    if(position1 == 100);
+    if(position == 100);
     {
         /*display you win*/
     }    
 }
-
-function movePlayer2()
-{
-    if(position2 + diceRoll < 100)
-    {
-        position2 = position2 + diceRoll;
-    }
-    for(let i == 0; i < startSnake.length; i++)
-    {
-        if(position2 == startSnake[i])
-        {
-            position2 = endSnake[i];
-        }
-    }
-    for(let i == 0; i < startLadder.length; i++)
-    {
-        if(position2 == startLadder[i])
-        {
-            position2 = endLadder[i];
-        }
-    }
-    if(position2 == 100);
-    {
-        /*display you win*/
-    }    
-}
-    
 
 /*
 Player moves right one square by adding 110 px
