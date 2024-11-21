@@ -24,6 +24,7 @@ let diceRoll = Math.floor(Math.random()*6)+1;
 let position1 = 1;
 let position2 = 1;
 
+/*Still have to make image move*/
 function movePlayer1(){
     if(position1 + diceRoll < 100)
     {
