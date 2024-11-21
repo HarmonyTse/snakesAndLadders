@@ -14,7 +14,7 @@ let grid = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91],
             [20, 29, 28, 27, 26, 25, 24, 23, 22, 21],
             [11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 
             [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]];
-
+*/
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 99]
 let startLadder = [3, 10, 14, 24, 35, 54, 60, 71, 78, 81]
@@ -23,17 +23,66 @@ let endLadder = [21, 50, 36, 57, 53, 76, 63, 93, 97, 100]
 let diceRoll = Math.floor(Math.random()*6)+1;
 let position1 = 1;
 let position2 = 1;
-function movePlayer1(){
 
+function movePlayer1(){
+    if(position1 + diceRoll < 100)
+    {
+        position1 = position1 + diceRoll;
+    }
+    for(let i == 0; i < startSnake.length; i++)
+    {
+        if(position1 == startSnake[i])
+        {
+            position1 = endSnake[i];
+        }
+    }
+    for(let i == 0; i < startLadder.length; i++)
+    {
+        if(position1 == startLadder[i])
+        {
+            position1 = endLadder[i];
+        }
+    }
+    if(position1 == 100);
+    {
+        /*display you win*/
+    }    
+}
+
+function movePlayer2()
+{
+    if(position2 + diceRoll < 100)
+    {
+        position2 = position2 + diceRoll;
+    }
+    for(let i == 0; i < startSnake.length; i++)
+    {
+        if(position2 == startSnake[i])
+        {
+            position2 = endSnake[i];
+        }
+    }
+    for(let i == 0; i < startLadder.length; i++)
+    {
+        if(position2 == startLadder[i])
+        {
+            position2 = endLadder[i];
+        }
+    }
+    if(position2 == 100);
+    {
+        /*display you win*/
+    }    
+}
+    
+
+/*
 Player moves right one square by adding 110 px
 Players moves up one square by subtracting 110 px
 
 PLAYER IS AT 1: LEFT 120 px TOP: 1050 px
 }
 
-function movePlayer2(){
-  position2.value += diceRoll;
-}
 
 let grid = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91], 
             [81, 82, 83, 84, 85, 86, 87, 88, 89, 90], 
