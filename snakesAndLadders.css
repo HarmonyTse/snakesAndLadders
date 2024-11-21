@@ -5,7 +5,5 @@
 
 #player{
 	position: absolute;
-	top: 1050px;
-	left: 120px;
 	z-index: 1;
 }
