@@ -1,3 +1,6 @@
+let playerOneName = document.querySelector(#Player1);
+let playerTwoName = document.querySelector(#Player2);
+
 function assignColor(color){
     let image = document.getElementById("player");
     image.src = color;
