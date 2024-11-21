@@ -3,6 +3,11 @@ function assignColor(color){
     image.src = color;
 }
 
+function goToNextPage(nextPage)
+{
+    window.location.href = nextPage;
+    location.replace(nextPage);
+}
 /*
 let playerPosition = document.getElementById("player")
 playerPosition.position = "absolute";
