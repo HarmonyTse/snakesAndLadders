@@ -3,6 +3,13 @@ function assignColor(color){
     image.src = color;
 }
 
+
+function move(){
+    let playerPosition = document.getElementById("player")
+    playerPosition.position = "absolute";
+    playerPosition.top = "1050px";
+    playerPosition.left = "230px";
+}
 /*
 let grid = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91], 
             [81, 82, 83, 84, 85, 86, 87, 88, 89, 90], 
