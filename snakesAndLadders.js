@@ -2,6 +2,7 @@ function assignColor(color){
     let image = document.getElementById("player");
     image.src = color;
 }
+
 /*
 let grid = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91], 
             [81, 82, 83, 84, 85, 86, 87, 88, 89, 90], 
@@ -14,7 +15,7 @@ let grid = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91],
             [20, 29, 28, 27, 26, 25, 24, 23, 22, 21],
             [11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 
             [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]];
-*/
+            
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 99]
 let startLadder = [3, 10, 14, 24, 35, 54, 60, 71, 78, 81]
@@ -24,8 +25,9 @@ let diceRoll = Math.floor(Math.random()*6)+1;
 let position1 = 1;
 let position2 = 1;
 
-/*Still have to make image move*/
-function movePlayer(position){ /*call position 1 or position 2*/
+##Still have to make images move
+
+function movePlayer(position){ ##function alternates between assigning parameter as position1 or position2
     if(position + diceRoll < 100)
     {
         position = position + diceRoll;
@@ -50,7 +52,6 @@ function movePlayer(position){ /*call position 1 or position 2*/
     }    
 }
 
-/*
 Player moves right one square by adding 110 px
 Players moves up one square by subtracting 110 px
 
