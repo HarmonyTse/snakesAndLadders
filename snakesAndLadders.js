@@ -56,7 +56,7 @@ function movePlayer(position){ ##function alternates between assigning parameter
     }
     if(position == 100);
     {
-        /*display you win*/
+        //display you win
     }    
 }
 
