@@ -1,12 +1,12 @@
-function changeNames(){
-    var playerOneName = document.getElementById("Player1").value;
+function assignNames(){ //This function changes the names of the buttons through assigning the names that a user enters to the button
+    var playerOneName = document.getElementById("Player1").value; //the value the user enters is assigned to 2 variables corresponding to each user
     var playerTwoName = document.getElementById("Player2").value;
 
-    localStorage.setItem("playerOneName", playerOneName);
+    localStorage.setItem("playerOneName", playerOneName); //the variables are set to local storage so that they can be accessed from another html page
     localStorage.setItem("playerTwoName", playerTwoName);
 }
 
-function updateNames(){
+function updateNames(){ //This function changes the names of the buttons through assigning the names that a user enters to the button
     var red = document.getElementById("red");
     red.innerHTML = localStorage.getItem("playerOneName");
     var yellow = document.getElementById("yellow");
