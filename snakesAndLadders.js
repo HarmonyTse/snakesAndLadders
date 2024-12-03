@@ -17,7 +17,7 @@ function assignColor(color){
     image.src = color;
     var leftPosition = 25;
     leftPostion+=110;
-    image.style.left = `${leftPosition}px`;
+    image.style.left = "1000px";
 }
 
 /*
