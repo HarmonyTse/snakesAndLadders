@@ -14,6 +14,7 @@ function updateNames(){
 }
 
 let leftPosition = 25;
+let index = 1;
 function assignColor(color){
     const image = document.getElementById("player");
     image.src = color;
