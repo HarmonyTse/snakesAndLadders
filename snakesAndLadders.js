@@ -12,12 +12,13 @@ function updateNames(){
     var yellow = document.getElementById("yellow");
     yellow.innerHTML = localStorage.getItem("playerTwoName");
 }
+
+let leftPosition = 25;
 function assignColor(color){
     const image = document.getElementById("player");
     image.src = color;
-    var leftPosition = 25;
     leftPosition+=110;
-    image.style.left = "1000px";
+    image.style.left = leftPosition + "px";
 }
 
 /*
