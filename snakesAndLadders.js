@@ -13,37 +13,6 @@ function updateNames(){ //This function changes the names of the buttons through
     yellow.innerHTML = localStorage.getItem("playerTwoName") + "'s dice";
 }
 
-let leftPosition = 25;
-let topPosition = 1085;
-let index = 1;
-let diceRoll = 0;
-function assignColor(color){
-    const image = document.getElementById("player");
-    image.src = color;
-    diceRoll = Math.floor(Math.random()*6)+1;
-    leftPosition += (105*diceRoll);
-    index+= diceRoll;
-    topPosition -= (110*diceRoll);
-    image.style.top = topPosition +"px";
-    image.style.left = leftPosition + "px";
-}
-
-/*
-let playerPosition = document.getElementById("player")
-playerPosition.position = "absolute";
-playerPosition.top = "1050px";
-playerPosition.left = "230px";
-
-let grid = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91], 
-            [81, 82, 83, 84, 85, 86, 87, 88, 89, 90], 
-            [80, 79, 78, 77, 76, 75, 74, 73, 72, 71], 
-            [61, 62, 63, 64, 65, 66, 67, 68, 69, 70],
-            [60, 59, 58, 57, 56, 55, 54, 53, 52, 51], 
-            [41, 42, 43, 44, 45, 46, 47, 48, 49, 50], 
-            [40, 39, 38, 37, 36, 35, 34, 33, 32, 31], 
-            [21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 
-            [20, 19, 18, 17, 16, 15, 14, 13, 12, 11],
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]];
 let gridTop = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 let gridLeft = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 31,
     32, 33, 34, 35, 36, 37, 38, 39, 51, 52, 53, 54, 55, 56, 
@@ -54,17 +23,35 @@ let gridRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 21, 22, 23, 24,
     61, 62, 63, 64, 65, 66, 67, 68, 69, 81, 82, 83, 84, 85,
     86, 87, 88, 89]
 
-            
+let leftPosition = 25;
+let topPosition = 1085;
+let index = 1;
+let diceRoll = 0;
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 99]
 let startLadder = [3, 10, 14, 24, 35, 54, 60, 71, 78, 81]
 let endLadder = [21, 50, 36, 57, 53, 76, 63, 93, 97, 100]
 
-let diceRoll = Math.floor(Math.random()*6)+1;
-let position1 = 1;
-let position2 = 1;
+function assignColor(color){ /*suppose to assign color to players
+    const image = document.getElementById("player");
+    image.src = color;
+    diceRoll = Math.floor(Math.random()*6)+1; /*have to move to different funciton
+    leftPosition += (105*diceRoll);
+    index+= diceRoll;
+    topPosition -= (110*diceRoll);
+    image.style.top = topPosition +"px";
+    image.style.left = leftPosition + "px";
+}
+/*
 
-##Still have to make images move
+function movePlayer(index, leftPosition, topPosition){ //this function moves the player according to the diceroll and position on board
+    if(index % 10 == 0)
+    {
+        topPosition -= 110*
+}
+
+
+##BRAINSTORMING
 
 function movePlayer(position){ ##function alternates between assigning parameter as position1 or position2
     if(position + diceRoll < 100)
