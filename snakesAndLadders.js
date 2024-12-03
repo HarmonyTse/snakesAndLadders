@@ -16,7 +16,7 @@ function assignColor(color){
     const image = document.getElementById("player");
     image.src = color;
     var leftPosition = 25;
-    leftPostion+=110;
+    leftPosition+=110;
     image.style.left = "1000px";
 }
 
