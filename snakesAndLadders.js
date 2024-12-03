@@ -15,6 +15,7 @@ function updateNames(){
 function assignColor(color){
     var image = document.getElementById("player");
     image.src = color;
+    image.style.left = "135";
 }
 
 /*
