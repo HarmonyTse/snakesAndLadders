@@ -24,7 +24,7 @@ function assignColor(color){
     leftPosition += (110*diceRoll);
     index += diceRoll;
     if(index % 10 == 0){
-        topPosition += (110*diceRoll);
+        topPosition -= (110*diceRoll);
         image.style.top = topPosition +"px";
     }
     image.style.left = leftPosition + "px";
