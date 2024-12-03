@@ -15,7 +15,9 @@ function updateNames(){
 function assignColor(color){
     var image = document.getElementById("player");
     image.src = color;
-    image.style.left = "135px";
+    var leftPosition = 25;
+    leftPostion+=110;
+    image.style.left = `${leftPosition}px`;
 }
 
 /*
