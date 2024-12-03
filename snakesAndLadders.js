@@ -21,19 +21,11 @@ function assignColor(color){
     const image = document.getElementById("player");
     image.src = color;
     diceRoll = Math.floor(Math.random()*6)+1;
-    leftPosition += (110*diceRoll);
-    for(let i = 0; i < diceRoll; i++)
-    {
-        index++;
-        if(index % 10 == 0)
-        {
-            topPosition -= (110*diceRoll);
-            image.style.top = topPosition +"px";
-        }
-        else{
-            image.style.left = leftPosition + "px";
-        }
-    }
+    leftPosition += (105*diceRoll);
+    index+= diceRoll;
+    topPosition -= (110*diceRoll);
+    image.style.top = topPosition +"px";
+    image.style.left = leftPosition + "px";
 }
 
 /*
@@ -42,7 +34,7 @@ playerPosition.position = "absolute";
 playerPosition.top = "1050px";
 playerPosition.left = "230px";
 
-let gridLeft = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91], 
+let grid = [[100, 99, 98, 97, 96, 95, 94, 93, 92, 91], 
             [81, 82, 83, 84, 85, 86, 87, 88, 89, 90], 
             [80, 79, 78, 77, 76, 75, 74, 73, 72, 71], 
             [61, 62, 63, 64, 65, 66, 67, 68, 69, 70],
