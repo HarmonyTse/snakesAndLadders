@@ -9,5 +9,6 @@
 	position: absolute;
 	top: 1085px;
 	left: 25px;
+	width: 100px;
 	z-index: 1;
 }
