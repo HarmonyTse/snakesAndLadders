@@ -8,9 +8,9 @@ function assignNames(){ //This function assigns variables to the name
 
 function updateNames(){ //This function changes the names of the buttons through assigning the names that a user enters to the button
     var red = document.getElementById("red");
-    red.innerHTML = localStorage.getItem("playerOneName");
+    red.innerHTML = localStorage.getItem("playerOneName") + "'s dice";
     var yellow = document.getElementById("yellow");
-    yellow.innerHTML = localStorage.getItem("playerTwoName");
+    yellow.innerHTML = localStorage.getItem("playerTwoName") + "'s dice";
 }
 
 let leftPosition = 25;
