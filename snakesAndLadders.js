@@ -1,4 +1,4 @@
-function assignNames(){ //This function changes the names of the buttons through assigning the names that a user enters to the button
+function assignNames(){ //This function assigns variables to the name
     var playerOneName = document.getElementById("Player1").value; //the value the user enters is assigned to 2 variables corresponding to each user
     var playerTwoName = document.getElementById("Player2").value;
 
