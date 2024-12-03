@@ -13,7 +13,7 @@ function updateNames(){
     yellow.innerHTML = localStorage.getItem("playerTwoName");
 }
 function assignColor(color){
-    var image = document.getElementById("player");
+    const image = document.getElementById("player");
     image.src = color;
     var leftPosition = 25;
     leftPostion+=110;
