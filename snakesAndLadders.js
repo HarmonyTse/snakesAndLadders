@@ -22,12 +22,18 @@ function assignColor(color){
     image.src = color;
     diceRoll = Math.floor(Math.random()*6)+1;
     leftPosition += (110*diceRoll);
-    index += diceRoll;
-    if(index % 10 == 0){
-        topPosition -= (110*diceRoll);
-        image.style.top = topPosition +"px";
+    for(let i = 0; i < diceRoll; i++)
+    {
+        index++;
+        if(index % 10 == 0)
+        {
+            topPosition -= (110*diceRoll);
+            image.style.top = topPosition +"px";
+        }
+        else{
+            image.style.left = leftPosition + "px";
+        }
     }
-    image.style.left = leftPosition + "px";
 }
 
 /*
