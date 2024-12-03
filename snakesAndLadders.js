@@ -1,8 +1,19 @@
-/*let playerOneName = document.querySelector(#Player1);
-let playerTwoName = document.querySelector(#Player2);
-*/
+function changeNames(){
+    var playerOneName = document.getElementById("Player1").value;
+    var playerTwoName = document.getElementById("Player2").value;
+
+    localStorage.setItem("playerOneName", playerOneName);
+    localStorage.setItem("playerTwoName", playerTwoName);
+}
+
+function updateNames(){
+    var red = document.getElementById("red");
+    red.innerHTML = localStorage.getItem("playerOneName");
+    var yellow = document.getElementById("yellow");
+    yellow.innerHTML = localStorage.getItem("playerTwoName");
+}
 function assignColor(color){
-    let image = document.getElementById("player");
+    var image = document.getElementById("player");
     image.src = color;
 }
 

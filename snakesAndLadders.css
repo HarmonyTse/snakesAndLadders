@@ -1,11 +1,13 @@
 #board{
 	position: absolute;
 	z-index: 0;
+	top: 120px;
+	left: 10px;
 }
 
 #player{
 	position: absolute;
-	top: 1050px;
-	left: 120px;
+	top: 1085px;
+	left: 25px;
 	z-index: 1;
 }
