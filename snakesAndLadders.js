@@ -39,7 +39,7 @@ function assignColor(color){ //suppose to assign color to players
     leftPosition += (105*diceRoll);
     index+= diceRoll;
     topPosition -= (110*diceRoll);
-    image.style.top = topPosition +"px";
+    //image.style.top = topPosition +"px";
     image.style.left = leftPosition + "px";
 }
 /*
