@@ -33,7 +33,7 @@ let startLadder = [3, 10, 14, 24, 35, 54, 60, 71, 78, 81]
 let endLadder = [21, 50, 36, 57, 53, 76, 63, 93, 97, 100]
 
 function assignColor(color){ //suppose to assign color to players
-    const image = document.getElementById("player");
+    let image = document.getElementById("player");
     image.src = color;
     diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
     leftPosition += (105*diceRoll);
