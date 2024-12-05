@@ -32,10 +32,10 @@ let endSnake = [7, 5, 9, 11, 55, 31, 44, 99]
 let startLadder = [3, 10, 14, 24, 35, 54, 60, 71, 78, 81]
 let endLadder = [21, 50, 36, 57, 53, 76, 63, 93, 97, 100]
 
-function assignColor(color){ /*suppose to assign color to players
+function assignColor(color){ //suppose to assign color to players
     const image = document.getElementById("player");
     image.src = color;
-    diceRoll = Math.floor(Math.random()*6)+1; /*have to move to different funciton
+    diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
     leftPosition += (105*diceRoll);
     index+= diceRoll;
     topPosition -= (110*diceRoll);
