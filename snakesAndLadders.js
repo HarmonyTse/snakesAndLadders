@@ -13,8 +13,8 @@ function updateNames(){ //This function changes the names of the buttons through
     yellow.innerHTML = localStorage.getItem("playerTwoName") + "'s dice";
 }
 
-let gridTop = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-let gridLeft = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 31,
+let gridTop = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+let gridLeft = [11, 12, 13, 14, 15, 16, 17, 18, 19, 31,
     32, 33, 34, 35, 36, 37, 38, 39, 51, 52, 53, 54, 55, 56, 
     57, 58, 59, 71, 72, 73, 74, 75, 76, 77, 78, 79, 91, 92,
     93, 94, 95, 96, 97, 98, 99]
@@ -25,7 +25,7 @@ let gridRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 21, 22, 23, 24,
 
 let leftPosition = 25;
 let topPosition = 1085;
-let index = 1;
+let index = 0;
 let diceRoll = 0;
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 99]
@@ -36,14 +36,29 @@ function assignColor(color){ //suppose to assign color to players
     let image = document.getElementById("player");
     image.src = color;
     diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
-    leftPosition += (105*diceRoll);
-    index+= diceRoll;
-    topPosition -= (110*diceRoll);
-    //image.style.top = topPosition +"px";
+    for(let i = 0; i < diceRoll; i++){
+		index++;
+		for(let j = 0; j < gridTop.length; j++){
+			if(index == gridTop[j]){
+				topPosition -= (105);
+			}
+		}
+		for(let j = 0; j < gridLeft.length; j++){
+			if(index == gridLeft[j]){
+				leftPosition -= (105);
+			}
+		}
+		for(let j = 0; j < gridRight.length; j++){
+			if(index == gridRight[j]){
+				leftPosition += (105);
+			}
+		}
+	}
+    image.style.top = topPosition +"px";
     image.style.left = leftPosition + "px";
 }
-/*
 
+/*
 function movePlayer(index, leftPosition, topPosition){ //this function moves the player according to the diceroll and position on board
     if(index % 10 == 0)
     {
