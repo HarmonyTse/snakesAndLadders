@@ -26,7 +26,7 @@ let gridRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 21, 22, 23, 24,
 let leftPosition = 25;
 let topPosition = 1085;
 let index = 1;
-let diceRoll = 1;
+let diceRoll = 0;
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 99]
 let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81]
@@ -35,12 +35,15 @@ let endLadder = [21, 50, 36, 57, 53, 76, 63, 87, 93, 97, 100]
 function assignColor(color){ //suppose to assign color to players
     let image = document.getElementById("player");
     image.src = color;
-//    diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
+    rollDice(image);
+}
+function rollDice(image){
+    diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
     for(let i = 0; i < diceRoll; i++){
 		movePlayer();
         index++;
 	}
-    checkSnakeAndLadder(startSnake, startLadder, endSnake, endLadder);
+    checkSnakeAndLadder();
     image.style.top = topPosition +"px";
     image.style.left = leftPosition + "px";
 }
@@ -70,19 +73,19 @@ function movePlayerDown(){
 }
 
 let secondIndex = 0;
-function checkSnakeAndLadder(startSnake, startLadder, endSnake, endLadder){
-    for(let i = 0; i < this.startSnake.length; i++){
-        if(index == this.startSnake[i]){
-            secondIndex = Math.abs(this.startSnake[i]-this.endSnake[i]);
+function checkSnakeAndLadder(){
+    for(let i = 0; i < startSnake.length; i++){
+        if(index == startSnake[i]){
+            secondIndex = Math.abs(startSnake[i]-endSnake[i]);
             for(let j = 0; j < secondIndex; j++){
                 index--;
                 movePlayerDown();
             }
         }
     }
-    for(let i = 0; i < this.startLadder.length; i++){
-        if(index == this.startLadder[i]){
-            secondIndex = Math.abs(this.startLadder[i]-this.endLadder[i]);
+    for(let i = 0; i < startLadder.length; i++){
+        if(index == startLadder[i]){
+            secondIndex = Math.abs(startLadder[i]-endLadder[i]);
             for(let j = 0; j < secondIndex; j++){
                 movePlayer();
                 index++;
