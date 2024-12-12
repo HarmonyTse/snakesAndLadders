@@ -36,7 +36,7 @@ function assignColor(color){ //suppose to assign color to players
     let image = document.getElementById("player");
     image.src = color;
     diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
-    document.getElementById("diceResult").textContent = result;
+    document.getElementById("diceRoll").textContent = ("Bob rolled a 1");
     for(let i = 0; i < diceRoll; i++){
 		index++;
 		for(let j = 0; j < gridTop.length; j++){
