@@ -25,38 +25,70 @@ let gridRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 21, 22, 23, 24,
 
 let leftPosition = 25;
 let topPosition = 1085;
-let index = 0;
-let diceRoll = 0;
+let index = 1;
+let diceRoll = 1;
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 99]
-let startLadder = [3, 10, 14, 24, 35, 54, 60, 71, 78, 81]
-let endLadder = [21, 50, 36, 57, 53, 76, 63, 93, 97, 100]
+let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81]
+let endLadder = [21, 50, 36, 57, 53, 76, 63, 87, 93, 97, 100]
 
 function assignColor(color){ //suppose to assign color to players
     let image = document.getElementById("player");
     image.src = color;
-    diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
-    document.getElementById("diceRoll").textContent = ("Bob rolled a 1");
+//    diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
     for(let i = 0; i < diceRoll; i++){
-		index++;
-		for(let j = 0; j < gridTop.length; j++){
-			if(index == gridTop[j]){
-				topPosition -= (105);
-			}
-		}
-		for(let j = 0; j < gridLeft.length; j++){
-			if(index == gridLeft[j]){
-				leftPosition -= (105);
-			}
-		}
-		for(let j = 0; j < gridRight.length; j++){
-			if(index == gridRight[j]){
-				leftPosition += (105);
-			}
-		}
+		movePlayer();
+        index++;
 	}
+    checkSnakeAndLadder();
     image.style.top = topPosition +"px";
     image.style.left = leftPosition + "px";
+}
+
+function movePlayer(){
+	if(gridTop.includes(index)){
+		topPosition -= (105);
+	}
+    else if(gridLeft.includes(index)){
+		leftPosition -= (105);
+	}
+    else if(gridRight.includes(index)){
+		leftPosition += (105);
+	}
+}
+
+function movePlayerDown(){
+	if(gridTop.includes(index)){
+		topPosition += (105);
+	}
+    else if(gridLeft.includes(index)){
+		leftPosition += (105);
+	}
+    else if(gridRight.includes(index)){
+		leftPosition -= (105);
+	}
+}
+
+let secondIndex = 0;
+function checkSnakeAndLadder(){
+    for(let i = 0; i < startSnake.length; i++){
+        if(index == startSnake[i]){
+            secondIndex = Math.abs(startSnake[i]-endSnake[i]);
+            for(let j = 0; j < secondIndex; j++){
+                index--;
+                movePlayerDown();
+            }
+        }
+    }
+    for(let i = 0; i < startLadder.length; i++){
+        if(index == startLadder[i]){
+            secondIndex = Math.abs(startLadder[i]-endLadder[i]);
+            for(let j = 0; j < secondIndex; j++){
+                movePlayer();
+                index++;
+            }
+        }
+    }
 }
 
 /*
