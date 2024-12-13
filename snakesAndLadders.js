@@ -23,10 +23,10 @@ let gridRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 21, 22, 23, 24,
     61, 62, 63, 64, 65, 66, 67, 68, 69, 81, 82, 83, 84, 85,
     86, 87, 88, 89]
 
-let leftPosition = 25;
-let topPosition = 1085;
+let leftPosition = 20;
+let topPosition = 840;
 let index = 1;
-let diceRoll = 0;
+let diceRoll = 1;
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 99]
 let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81]
@@ -38,7 +38,7 @@ function assignColor(color){ //suppose to assign color to players
     rollDice(image);
 }
 function rollDice(image){
-    diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
+    //diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
     for(let i = 0; i < diceRoll; i++){
 		movePlayer();
         index++;
@@ -50,25 +50,25 @@ function rollDice(image){
 
 function movePlayer(){
 	if(gridTop.includes(index)){
-		topPosition -= (105);
+		topPosition -= (80);
 	}
     	else if(gridLeft.includes(index)){
-		leftPosition -= (105);
+		leftPosition -= (80);
 	}
     	else if(gridRight.includes(index)){
-		leftPosition += (105);
+		leftPosition += (80);
 	}
 }
 
 function movePlayerDown(){
 	if(gridTop.includes(index)){
-		topPosition += (105);
+		topPosition += (80);
 	}
     else if(gridLeft.includes(index)){
-		leftPosition += (105);
+		leftPosition += (80);
 	}
     else if(gridRight.includes(index)){
-		leftPosition -= (105);
+		leftPosition -= (80);
 	}
 }
 

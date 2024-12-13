@@ -1,15 +1,23 @@
 <!DOCTYPE html>
   <head>
+	<title>Snakes and Ladders</title>
     <link rel = "stylesheet" href = "snakesAndLadders.css">
     <script src = "snakesAndLadders.js"></script>
   </head>
   <body>
-    <label for = "Player1">Choose Your Name Player One: </label>
+	<h1 id="title">Snakes and Ladders</h1>
+    <label id="inputText" for = "Player1">Choose Your Name Player One: </label>
     <input id = "Player1" type = "text" >
-    <label for = "Player2">Choose Your Name Player Two: </label>
-    <input id = "Player2" type = "text">
+    <label id="inputText" for = "Player2"><br><br>Choose Your Name Player Two: </label>
+    <input id = "Player2" type = "text"><br><br>
     <button onclick = "window.location.href='snakesAndLadders.html'; assignNames()">Enter Names</button>
-    <h1 id = "text1">Player 1 is red</h1>
-    <h1 id = "text1">Player 2 is yellow</h1>
+    <h2 id = "directions">Objective: The goal of the game is to be the first player to reach square 100 on the board <br><br>
+		Directions: <br> (1) Enter names above and click "Enter Names" when ready. <br> (2) Click the button to roll die and have your player moved and alternate between both players. <br> (3) Once you have rolled your die, your player will be moved its assigned amount. 
+		<br> (4) When one of the two players reaches square 100, the game is over and you are given the option to reset the gameboard.</h2>
+	<h2 id = "directions"> Game rules: <br> (1) Both players start at square 1. <br>
+		(2) Players take turns rolling the dice and moving their game piece forward the number of squares shown on the dice.
+		<br> (3) If a player lands on the bottom of a ladder, they must climb the ladder to the top square. <br> 
+		(4) If a player lands on the head of a snake, they must slide down to the tail of the snake.
+		<br> (5) The player who lands on square 100 wins the game. <br></h2>
   </body>
 </html>

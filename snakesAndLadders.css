@@ -2,17 +2,36 @@
 	position: absolute;
 	z-index: 0;
 	top: 120px;
+	width: 810px;
 	left: 10px;
 }
 
 #player{
 	position: absolute;
-	top: 1085px;
-	left: 25px;
-	width: 90px;
+	width: 70px;
 	z-index: 1;
 }
 
-#text1{
+#title{
+	color: green;
+	font-size: 60px;
+	margin: 0px 0px 10px 0px;
+}
+
+#yellowButton{
+	background-color: yellow;
+}
+
+#redButton{
+	background-color: red;
+}
+
+#inputText{
 	font-family: sans-serif;
+	font-size: 30px;
+}
+
+#directions{
+	font-family: sans-serif;
+	font-size: 25px;
 }
