@@ -23,32 +23,118 @@ let gridRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 21, 22, 23, 24,
     61, 62, 63, 64, 65, 66, 67, 68, 69, 81, 82, 83, 84, 85,
     86, 87, 88, 89]
 
-let leftPosition = 20;
-let topPosition = 840;
-let index = 1;
-let diceRoll = 1;
+let redLeftPosition = 20;
+let redTopPosition = 840;
+let yellowLeftPosition = 20;
+let yellowTopPosition = 840;
+let redIndex = 1;
+let yellowIndex = 1;
+let diceRoll = 0;
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 99]
 let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81]
 let endLadder = [21, 50, 36, 57, 53, 76, 63, 87, 93, 97, 100]
 
-function assignColor(color){ //suppose to assign color to players
-    let image = document.getElementById("player");
-    image.src = color;
-    rollDice(image);
+
+
+function moveRed() {
+    diceRoll = Math.floor(Math.random() * 6) + 1;;
+    let redImage = document.getElementById("redPlayer");
+    let redPosition = rollDiceAndMove(redImage, redIndex, redLeftPosition, redTopPosition);
+    redIndex = redPosition.index;
+    redLeftPosition = redPosition.left;
+    redTopPosition = redPosition.top;
+
 }
-function rollDice(image){
+
+function moveYellow() {
+    diceRoll = Math.floor(Math.random() * 6) + 1;;
+    let yellowImage = document.getElementById("yellowPlayer");
+    let yellowPosition = rollDiceAndMove(yellowImage, yellowIndex, yellowLeftPosition, yellowTopPosition);
+    yellowIndex = yellowPosition.index;
+    yellowLeftPosition = yellowPosition.left;
+    yellowTopPosition = yellowPosition.top;
+}
+
+function rollDiceAndMove(image, index, leftPosition, topPosition) {
+    for (let i = 0; i < diceRoll; i++) {
+        ({ index, leftPosition, topPosition } = movePlayer(index, leftPosition, topPosition));
+    }
+    ({ index, leftPosition, topPosition } = checkSnakeAndLadder(index, leftPosition, topPosition));
+    image.style.top = topPosition + "px";
+    image.style.left = leftPosition + "px";
+
+    return { index, left: leftPosition, top: topPosition };
+}
+
+function movePlayer(index, leftPosition, topPosition) {
+    if (gridTop.includes(index)) {
+        topPosition -= 80;
+    } else if (gridLeft.includes(index)) {
+        leftPosition -= 80;
+    } else if (gridRight.includes(index)) {
+        leftPosition += 80;
+    }
+    return { index: index + 1, leftPosition, topPosition };
+}
+
+function checkSnakeAndLadder(index, leftPosition, topPosition) {
+    for (let i = 0; i < startSnake.length; i++) {
+        if (index == startSnake[i]) {
+            let diff = startSnake[i] - endSnake[i];
+            for (let j = 0; j < diff; j++) {
+                ({ index, leftPosition, topPosition } = movePlayerDown(index, leftPosition, topPosition));
+            }
+        }
+    }
+
+    for (let i = 0; i < startLadder.length; i++) {
+        if (index == startLadder[i]) {
+            let diff = endLadder[i] - startLadder[i];
+            for (let j = 0; j < diff; j++) {
+                ({ index, leftPosition, topPosition } = movePlayer(index, leftPosition, topPosition));
+            }
+        }
+    }
+
+    return { index, leftPosition, topPosition };
+}
+
+function movePlayerDown(index, leftPosition, topPosition) {
+    if (gridTop.includes(index)) {
+        topPosition += 80;
+    } else if (gridLeft.includes(index)) {
+        leftPosition += 80;
+    } else if (gridRight.includes(index)) {
+        leftPosition -= 80;
+    }
+    return { index: index - 1, leftPosition, topPosition };
+}
+
+
+
+/*
+function moveRed(){ //suppose to assign color to players
+    let redImage = document.getElementById("redPlayer");
+    rollDice(redImage, redIndex, redLeftPosition, redTopPosition);
+}
+function moveYellow(){ //suppose to assign color to players
+    let yellowImage = document.getElementById("yellowPlayer");
+    rollDice(yellowImage, yellowIndex, yellowLeftPosition, yellowTopPosition);
+}
+
+function rollDice(image, index, leftPosition, topPosition){
     //diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
     for(let i = 0; i < diceRoll; i++){
-		movePlayer();
+		movePlayer(index, leftPosition, topPosition);
         index++;
 	}
-    checkSnakeAndLadder();
+    checkSnakeAndLadder(index, leftPosition, topPosition);
     image.style.top = topPosition +"px";
     image.style.left = leftPosition + "px";
 }
 
-function movePlayer(){
+function movePlayer(index, leftPosition, topPosition){
 	if(gridTop.includes(index)){
 		topPosition -= (80);
 	}
@@ -60,7 +146,7 @@ function movePlayer(){
 	}
 }
 
-function movePlayerDown(){
+function movePlayerDown(index, leftPosition, topPosition){
 	if(gridTop.includes(index)){
 		topPosition += (80);
 	}
@@ -73,13 +159,13 @@ function movePlayerDown(){
 }
 
 let secondIndex = 0;
-function checkSnakeAndLadder(){
+function checkSnakeAndLadder(index, leftPosition, topPosition){
     for(let i = 0; i < startSnake.length; i++){
         if(index == startSnake[i]){
             secondIndex = Math.abs(startSnake[i]-endSnake[i]);
             for(let j = 0; j < secondIndex; j++){
                 index--;
-                movePlayerDown();
+                movePlayerDown(index, leftPosition, topPosition);
             }
         }
     }
@@ -87,13 +173,13 @@ function checkSnakeAndLadder(){
         if(index == startLadder[i]){
             secondIndex = Math.abs(startLadder[i]-endLadder[i]);
             for(let j = 0; j < secondIndex; j++){
-                movePlayer();
+                movePlayer(index, leftPosition, topPosition);
                 index++;
             }
         }
     }
 }
-
+*/
 /*
 function movePlayer(index, leftPosition, topPosition){ //this function moves the player according to the diceroll and position on board
     if(index % 10 == 0)

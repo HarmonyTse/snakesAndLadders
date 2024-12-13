@@ -6,10 +6,20 @@
 	left: 10px;
 }
 
-#player{
+#redPlayer{
 	position: absolute;
 	width: 70px;
 	z-index: 1;
+	top: 840px;
+	left: 20px;
+}
+
+#yellowPlayer{
+	position: absolute;
+	width: 70px;
+	z-index: 1;
+	top: 840px;
+	left: 20px;
 }
 
 #title{
