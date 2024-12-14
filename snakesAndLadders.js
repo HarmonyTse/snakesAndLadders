@@ -7,9 +7,9 @@ function assignNames(){ //This function assigns variables to the name
 }
 
 function updateNames(){ //This function changes the names of the buttons through assigning the names that a user enters to the button
-    var red = document.getElementById("red");
+    var red = document.getElementById("redButton");
     red.innerHTML = localStorage.getItem("playerOneName") + "'s dice";
-    var yellow = document.getElementById("yellow");
+    var yellow = document.getElementById("yellowButton");
     yellow.innerHTML = localStorage.getItem("playerTwoName") + "'s dice";
 }
 
@@ -29,42 +29,61 @@ let yellowLeftPosition = 20;
 let yellowTopPosition = 840;
 let redIndex = 1;
 let yellowIndex = 1;
-let diceRoll = 0;
-let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]
-let endSnake = [7, 5, 9, 11, 55, 31, 44, 99]
-let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81]
-let endLadder = [21, 50, 36, 57, 53, 76, 63, 87, 93, 97, 100]
-
-
+let diceRoll = 5;
+let startSnake = [25, 41, 46, 48, 88, 90, 96, 99];
+let endSnake = [7, 5, 9, 11, 55, 31, 44, 23];
+let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81];
+let endLadder = [21, 50, 36, 57, 53, 76, 63, 87, 93, 97, 100];
 
 function moveRed() {
-    diceRoll = Math.floor(Math.random() * 6) + 1;;
+//    diceRoll = Math.floor(Math.random() * 6) + 1;
     let redImage = document.getElementById("redPlayer");
     let redPosition = rollDiceAndMove(redImage, redIndex, redLeftPosition, redTopPosition);
-    redIndex = redPosition.index;
-    redLeftPosition = redPosition.left;
-    redTopPosition = redPosition.top;
-
+    redIndex = redPosition[0];
+    redLeftPosition = redPosition[1];
+    redTopPosition = redPosition[2];
+    document.getElementById("redButton").style.visibility = "hidden";
+    document.getElementById("yellowButton").style.visibility = "visible";
+    document.getElementById("output").innerHTML = redIndex;
 }
 
 function moveYellow() {
-    diceRoll = Math.floor(Math.random() * 6) + 1;;
+//    diceRoll = Math.floor(Math.random() * 6) + 1;
     let yellowImage = document.getElementById("yellowPlayer");
     let yellowPosition = rollDiceAndMove(yellowImage, yellowIndex, yellowLeftPosition, yellowTopPosition);
-    yellowIndex = yellowPosition.index;
-    yellowLeftPosition = yellowPosition.left;
-    yellowTopPosition = yellowPosition.top;
+    yellowIndex = yellowPosition[0];
+    yellowLeftPosition = yellowPosition[1];
+    yellowTopPosition = yellowPosition[2];
+    document.getElementById("redButton").style.visibility = "visible";
+    document.getElementById("yellowButton").style.visibility = "hidden";
+    document.getElementById("output").innerHTML = yellowIndex;
 }
+
+let winning = document.getElementById("winner");
 
 function rollDiceAndMove(image, index, leftPosition, topPosition) {
     for (let i = 0; i < diceRoll; i++) {
-        ({ index, leftPosition, topPosition } = movePlayer(index, leftPosition, topPosition));
+        if(index+1 > 100)
+            break;
+        let playerPosition = []
+        playerPosition = movePlayer(index, leftPosition, topPosition);
+        index = playerPosition[0];
+        leftPosition = playerPosition[1];
+        topPosition = playerPosition[2];
     }
-    ({ index, leftPosition, topPosition } = checkSnakeAndLadder(index, leftPosition, topPosition));
+    if(index >= 100){
+        winning.innerHTML = "You Win!";
+        winning.style.visibility = "visible";
+    }
+    
+    let playerPosition = checkSnakeAndLadder(index, leftPosition, topPosition);
+    index = playerPosition[0];
+    leftPosition = playerPosition[1];
+    topPosition = playerPosition[2];
     image.style.top = topPosition + "px";
     image.style.left = leftPosition + "px";
-
-    return { index, left: leftPosition, top: topPosition };
+    let result = [index, leftPosition, topPosition];
+    return result;
 }
 
 function movePlayer(index, leftPosition, topPosition) {
@@ -75,15 +94,34 @@ function movePlayer(index, leftPosition, topPosition) {
     } else if (gridRight.includes(index)) {
         leftPosition += 80;
     }
-    return { index: index + 1, leftPosition, topPosition };
+    index++;
+    let result = [index, leftPosition, topPosition];
+    return result;
 }
+
+function movePlayerDown(index, leftPosition, topPosition) {
+    index--;
+    if (gridTop.includes(index)) {
+        topPosition += 80;
+    } else if (gridLeft.includes(index)) {
+        leftPosition += 80;
+    } else if (gridRight.includes(index)) {
+        leftPosition -= 80;
+    }
+    let result = [index, leftPosition, topPosition];
+    return result;
+}
+
 
 function checkSnakeAndLadder(index, leftPosition, topPosition) {
     for (let i = 0; i < startSnake.length; i++) {
         if (index == startSnake[i]) {
             let diff = startSnake[i] - endSnake[i];
             for (let j = 0; j < diff; j++) {
-                ({ index, leftPosition, topPosition } = movePlayerDown(index, leftPosition, topPosition));
+                let playerPosition = movePlayerDown(index, leftPosition, topPosition);
+                index = playerPosition[0];
+                leftPosition = playerPosition[1];
+                topPosition = playerPosition[2];
             }
         }
     }
@@ -92,94 +130,19 @@ function checkSnakeAndLadder(index, leftPosition, topPosition) {
         if (index == startLadder[i]) {
             let diff = endLadder[i] - startLadder[i];
             for (let j = 0; j < diff; j++) {
-                ({ index, leftPosition, topPosition } = movePlayer(index, leftPosition, topPosition));
+                let playerPosition= movePlayer(index, leftPosition, topPosition);
+                index = playerPosition[0];
+                leftPosition = playerPosition[1];
+                topPosition = playerPosition[2];
             }
         }
     }
-
-    return { index, leftPosition, topPosition };
-}
-
-function movePlayerDown(index, leftPosition, topPosition) {
-    if (gridTop.includes(index)) {
-        topPosition += 80;
-    } else if (gridLeft.includes(index)) {
-        leftPosition += 80;
-    } else if (gridRight.includes(index)) {
-        leftPosition -= 80;
-    }
-    return { index: index - 1, leftPosition, topPosition };
+    let result = [index, leftPosition, topPosition];
+    return result;
 }
 
 
 
-/*
-function moveRed(){ //suppose to assign color to players
-    let redImage = document.getElementById("redPlayer");
-    rollDice(redImage, redIndex, redLeftPosition, redTopPosition);
-}
-function moveYellow(){ //suppose to assign color to players
-    let yellowImage = document.getElementById("yellowPlayer");
-    rollDice(yellowImage, yellowIndex, yellowLeftPosition, yellowTopPosition);
-}
-
-function rollDice(image, index, leftPosition, topPosition){
-    //diceRoll = Math.floor(Math.random()*6)+1; //have to move to different funciton
-    for(let i = 0; i < diceRoll; i++){
-		movePlayer(index, leftPosition, topPosition);
-        index++;
-	}
-    checkSnakeAndLadder(index, leftPosition, topPosition);
-    image.style.top = topPosition +"px";
-    image.style.left = leftPosition + "px";
-}
-
-function movePlayer(index, leftPosition, topPosition){
-	if(gridTop.includes(index)){
-		topPosition -= (80);
-	}
-    	else if(gridLeft.includes(index)){
-		leftPosition -= (80);
-	}
-    	else if(gridRight.includes(index)){
-		leftPosition += (80);
-	}
-}
-
-function movePlayerDown(index, leftPosition, topPosition){
-	if(gridTop.includes(index)){
-		topPosition += (80);
-	}
-    else if(gridLeft.includes(index)){
-		leftPosition += (80);
-	}
-    else if(gridRight.includes(index)){
-		leftPosition -= (80);
-	}
-}
-
-let secondIndex = 0;
-function checkSnakeAndLadder(index, leftPosition, topPosition){
-    for(let i = 0; i < startSnake.length; i++){
-        if(index == startSnake[i]){
-            secondIndex = Math.abs(startSnake[i]-endSnake[i]);
-            for(let j = 0; j < secondIndex; j++){
-                index--;
-                movePlayerDown(index, leftPosition, topPosition);
-            }
-        }
-    }
-    for(let i = 0; i < startLadder.length; i++){
-        if(index == startLadder[i]){
-            secondIndex = Math.abs(startLadder[i]-endLadder[i]);
-            for(let j = 0; j < secondIndex; j++){
-                movePlayer(index, leftPosition, topPosition);
-                index++;
-            }
-        }
-    }
-}
-*/
 /*
 function movePlayer(index, leftPosition, topPosition){ //this function moves the player according to the diceroll and position on board
     if(index % 10 == 0)

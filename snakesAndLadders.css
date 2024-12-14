@@ -45,3 +45,19 @@
 	font-family: sans-serif;
 	font-size: 25px;
 }
+
+#winner{
+	position: absolute;
+	top: 200px;
+	left: 100px;
+	background-color: blue;
+	z-index: 2;
+	font-size: 50px;
+	visibility: hidden;
+}
+
+#output{
+	position: absolute;
+	left: 400px;
+	z-index: 3;
+}

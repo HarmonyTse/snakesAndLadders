@@ -7,11 +7,12 @@
   </head>
   <body onload = "updateNames()">
     <h1 id="title">Snakes and Ladders</h1>
-    <button id = "redButton" onload = "updateNames()" onclick = "moveRed()">Red</button>
-    <button id = "yellowButton" onload = "updateNames()" onclick = "moveYellow()">Yellow</button> 
+    <button id = "redButton" onclick = "moveRed()">Red</button>
+    <button id = "yellowButton" onclick = "moveYellow()">Yellow</button> 
     <img id = "board" src = "snakesAndLaddersGameBoard.png">
     <img id = "redPlayer" src = "redPlayer.png">
     <img id = "yellowPlayer" src = "yellowPlayer.png">
+    <button id = "winner">You win!</button>
     <p id = "output"></p>
   </body>
 </html>
