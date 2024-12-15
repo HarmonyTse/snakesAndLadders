@@ -80,7 +80,7 @@ function rollDiceAndMove(image, index, leftPosition, topPosition, color) {
     let winner = document.getElementById("winner");
     if(index+diceRoll >= 100){ //Check for winning condiiton
         index = 100;
-		winner.innerHTML = color + ' wins! (Click to go back to home page)'
+	winner.innerHTML = color + ' wins! (Click to go back to home page)'
         winner.style.visibility = "visible";
         document.getElementById(redButton).style.visibility = "hidden";
         document.getElementById(yellowButton).style.visibility = "hidden";
@@ -98,7 +98,14 @@ function rollDiceAndMove(image, index, leftPosition, topPosition, color) {
     index = playerPosition[0]; //TODO what does index mean
     leftPosition = playerPosition[1]; //TODO what is the left position
     topPosition = playerPosition[2]; //TODO what is the right position
-	message = playerPosition[3];
+    message = playerPosition[3];
+    if(index == 100){ //Check for winning condiiton
+	winner.innerHTML = color + ' wins! (Click to go back to home page)'
+        winner.style.visibility = "visible";
+        document.getElementById(redButton).style.visibility = "hidden";
+        document.getElementById(yellowButton).style.visibility = "hidden";
+        return [index, leftPosition, topPosition];
+    }
     image.style.top = topPosition + "px";
     image.style.left = leftPosition + "px";
     let result = [index, leftPosition, topPosition, message];
