@@ -48,12 +48,14 @@
 
 #winner{
 	position: absolute;
-	top: 200px;
-	left: 100px;
+	top: 300px;
+	left: 50px;
 	background-color: blue;
 	z-index: 2;
-	font-size: 50px;
+	font-size: 40px;
+	font-family: 'Courier New', Courier, monospace;
 	visibility: hidden;
+	padding: 30px;
 }
 
 #output{

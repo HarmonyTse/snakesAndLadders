@@ -29,7 +29,7 @@ let yellowLeftPosition = 20;
 let yellowTopPosition = 840;
 let redIndex = 1;
 let yellowIndex = 1;
-let diceRoll = 5;
+let diceRoll = 30;
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99];
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 23];
 let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81];
@@ -59,27 +59,37 @@ function moveYellow() {
     document.getElementById("output").innerHTML = yellowIndex;
 }
 
-let winning = document.getElementById("winner");
 
 function rollDiceAndMove(image, index, leftPosition, topPosition) {
+    let winning = document.getElementById("winner");
+    if(index+diceRoll >= 100){
+        index = 100;
+        winning.style.visibility = "visible";
+        image.style.top = "120px";
+        image.style.left = "20px";
+        document.getElementById(redButton).style.visibility = "hidden";
+        document.getElementById(yellowButton).style.visibility = "hidden";
+        return [index, leftPosition, topPosition];
+    }
     for (let i = 0; i < diceRoll; i++) {
-        if(index+1 > 100)
-            break;
-        let playerPosition = []
+        let playerPosition = [];
         playerPosition = movePlayer(index, leftPosition, topPosition);
         index = playerPosition[0];
         leftPosition = playerPosition[1];
         topPosition = playerPosition[2];
-    }
-    if(index >= 100){
-        winning.innerHTML = "You Win!";
-        winning.style.visibility = "visible";
     }
     
     let playerPosition = checkSnakeAndLadder(index, leftPosition, topPosition);
     index = playerPosition[0];
     leftPosition = playerPosition[1];
     topPosition = playerPosition[2];
+    if(index == 100){
+        winning.style.visibility = "visible";
+        image.style.top = "120px";
+        image.style.left = "20px";
+        document.getElementById(redButton).style.visibility = "hidden";
+        document.getElementById(yellowButton).style.visibility = "hidden";
+    }
     image.style.top = topPosition + "px";
     image.style.left = leftPosition + "px";
     let result = [index, leftPosition, topPosition];
