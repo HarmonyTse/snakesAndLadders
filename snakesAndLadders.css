@@ -30,10 +30,14 @@
 
 #yellowButton{
 	background-color: yellow;
+	font-size: 20px;
+	position: absolute;
+	left: 700px;
 }
 
 #redButton{
 	background-color: red;
+	font-size: 20px;
 }
 
 #inputText{

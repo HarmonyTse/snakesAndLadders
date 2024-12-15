@@ -8,9 +8,15 @@ function assignNames(){ //This function assigns variables to the name
 
 function updateNames(){ //This function changes the names of the buttons through assigning the names that a user enters to the button
     var red = document.getElementById("redButton");
-    red.innerHTML = localStorage.getItem("playerOneName") + "'s dice";
     var yellow = document.getElementById("yellowButton");
-    yellow.innerHTML = localStorage.getItem("playerTwoName") + "'s dice";
+    if(localStorage.getItem("playerOneName") == "")
+        red.innerHTML = "Red's dice";
+    else
+        red.innerHTML = localStorage.getItem("playerOneName") + "'s dice";
+    if(localStorage.getItem("playerTwoName") == "")
+        yellow.innerHTML = "Yellow's dice";
+    else
+        yellow.innerHTML = localStorage.getItem("playerTwoName") + "'s dice";
 }
 
 let gridTop = [10, 20, 30, 40, 50, 60, 70, 80, 90]
@@ -29,7 +35,7 @@ let yellowLeftPosition = 20;
 let yellowTopPosition = 840;
 let redIndex = 1;
 let yellowIndex = 1;
-let diceRoll = 30;
+let diceRoll = 5;
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99];
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 23];
 let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81];
