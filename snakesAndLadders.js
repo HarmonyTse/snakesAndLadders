@@ -37,7 +37,7 @@ let yellowLeftPosition = 20; //starting left position of yellow player on the ga
 let yellowTopPosition = 870; //starting top position of red player on the game board
 let redIndex = 1; //starting square of the red player
 let yellowIndex = 1; //starting square of the yellow player
-let diceRoll = 0; //declaring a variable to roll dice
+let diceRoll = 100; //declaring a variable to roll dice
 let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]; //squares on the gameboard which mark the heads of the snake
 let endSnake = [7, 5, 9, 11, 55, 31, 44, 23]; //squares on the gameboard which mark the tails of the snake
 let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81]; //squares on the gameboard which mark the bottom of the ladder
@@ -45,7 +45,7 @@ let endLadder = [21, 50, 36, 57, 53, 76, 63, 87, 93, 97, 100]; //squares on the 
 let message = ''; //displays a message of the moves made after player clicks a button to roll dice
 
 function moveRed() { //Function moves the red player when the red dice button is pressed
-    diceRoll = Math.floor(Math.random() * 6) + 1; //Generates a random number between 1-6. Math.ceil won't work
+//    diceRoll = Math.floor(Math.random() * 6) + 1; //Generates a random number between 1-6. Math.ceil won't work
     let redImage = document.getElementById("redPlayer"); 
     let redPreviousIndex = redIndex; //redPreviousIndex keeps track of previous red index
     let names = updateNames(); //gets name user enters
@@ -57,7 +57,7 @@ function moveRed() { //Function moves the red player when the red dice button is
     redTopPosition = redPosition[2];
     if(redPreviousIndex + diceRoll < 100){
 	message = String(redPosition[3]);
-	message += names[0] + ' moved from ' + String(redPreviousIndex) + ' to ' + String(redIndex) + ' after rolling ' + String(diceRoll) + '.';
+	message += names[0] + ' moved from ' + String(redPreviousIndex) + ' to ' + String(redIndex) + ' after rolling ' + String(diceRoll) + '. ';
     }
     document.getElementById("redButton").style.visibility = "hidden"; //hides the red player's button to roll dice from the view of the user
     document.getElementById("yellowButton").style.visibility = "visible"; //displays yellow player's button to roll dice
@@ -66,7 +66,7 @@ function moveRed() { //Function moves the red player when the red dice button is
 }
 
 function moveYellow() { //Function moves the yellow player when the yellow dice button is pressed
-    diceRoll = Math.floor(Math.random() * 6) + 1; 
+//    diceRoll = Math.floor(Math.random() * 6) + 1; 
     let yellowImage = document.getElementById("yellowPlayer"); 
     let yellowPreviousIndex = yellowIndex;
     let names = updateNames();
@@ -78,7 +78,7 @@ function moveYellow() { //Function moves the yellow player when the yellow dice 
     yellowTopPosition = yellowPosition[2];
     if(yellowPreviousIndex+diceRoll < 100){
 	message = String(yellowPosition[3]);
-	message += names[1] + ' moved from ' + String(yellowPreviousIndex) + ' to ' + String(yellowIndex) + ' after rolling ' + String(diceRoll) + '.';
+	message += names[1] + ' moved from ' + String(yellowPreviousIndex) + ' to ' + String(yellowIndex) + ' after rolling ' + String(diceRoll) + '. ';
     }
     document.getElementById("redButton").style.visibility = "visible"; //displays red player's button to roll dice
     document.getElementById("yellowButton").style.visibility = "hidden"; //hides the yellow player's button to roll dice from the view of the user
@@ -87,7 +87,7 @@ function moveYellow() { //Function moves the yellow player when the yellow dice 
 }
 
 
-function rollDiceAndMove(image, index, leftPosition, topPosition, color) {
+function rollDiceAndMove(image, index, leftPosition, topPosition, name) {
     let winner = document.getElementById("winner"); //button that appears when player reaches 100
     
     if(index+diceRoll > 100){
@@ -102,11 +102,11 @@ function rollDiceAndMove(image, index, leftPosition, topPosition, color) {
             topPosition = playerPosition[2]; 
             message = playerPosition[3];
         }
-	message = name + " bounced back " + (currentIndex+diceRoll-100) + ", after rolling " + diceRoll + ".";
+	    message = name + " bounced back " + (currentIndex+diceRoll-100) + ", after rolling " + diceRoll + ". ";
     } 
     else if(index+diceRoll == 100){ //Check for winning condiiton
         index = 100;
-	    winner.innerHTML = color + ' wins! (Click to go back to home page)';
+	    winner.innerHTML = name + ' wins! (Click to go back to home page)';
         winner.style.visibility = "visible";
         image.style.top = "160px";
         image.style.left = "20px";
@@ -124,14 +124,14 @@ function rollDiceAndMove(image, index, leftPosition, topPosition, color) {
         }
     }
     
-    let playerPosition = checkSnakeAndLadder(index, leftPosition, topPosition);
+    let playerPosition = checkSnakeAndLadder(index, leftPosition, topPosition, name);
     index = playerPosition[0]; //TODO what does index mean
     leftPosition = playerPosition[1]; //TODO what is the left position
     topPosition = playerPosition[2]; //TODO what is the right position
-    message = playerPosition[3];
+    message += playerPosition[3];
     if(index == 100){ //You need this piece of code if there is a ladder that ends at 100
         index = 100;
-	    winner.innerHTML = color + ' wins! (Click to go back to home page)';
+	    winner.innerHTML = name + ' wins! (Click to go back to home page)';
         winner.style.visibility = "visible";
         image.style.top = "160px";
         image.style.left = "20px";
@@ -172,7 +172,7 @@ function movePlayerDown(index, leftPosition, topPosition) {
 }
 
 // TODO: Add comment for each function
-function checkSnakeAndLadder(index, leftPosition, topPosition) {
+function checkSnakeAndLadder(index, leftPosition, topPosition, name) {
     let message = ''; // Declare message outside of loops to make it accessible for both conditions
   
     for (let i = 0; i < startSnake.length; i++) {
@@ -184,7 +184,7 @@ function checkSnakeAndLadder(index, leftPosition, topPosition) {
                 leftPosition = playerPosition[1];
                 topPosition = playerPosition[2];
             }
-            message = 'Oh no! The player got eaten by a snake!';
+            message = "Oh no! " + name + " got eaten by a snake!";
         }
     }
     
@@ -199,7 +199,7 @@ function checkSnakeAndLadder(index, leftPosition, topPosition) {
                 leftPosition = playerPosition[1];
                 topPosition = playerPosition[2];
             }
-            message = 'Yay! The player moved up a ladder!';
+            message = "Yay! " + name + " moved up a ladder!";
         }
     }  
     let result = [index, leftPosition, topPosition, message];
