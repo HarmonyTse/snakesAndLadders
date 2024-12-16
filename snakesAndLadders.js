@@ -49,6 +49,8 @@ function moveRed() {
     let redImage = document.getElementById("redPlayer");
 	let redPreviousIndex = redIndex;
     let names = updateNames();
+    if(names[0] == "")
+        names[0] = "Red";
     let redPosition = rollDiceAndMove(redImage, redIndex, redLeftPosition, redTopPosition, names[0]);
     redIndex = redPosition[0];
     redLeftPosition = redPosition[1];
@@ -66,6 +68,8 @@ function moveYellow() {
     let yellowImage = document.getElementById("yellowPlayer"); //TODO this assigns a variable to the image from html
 	let yellowPreviousIndex = yellowIndex;
     let names = updateNames();
+    if(names[1] == "")
+        names[1] = "Yellow";
     let yellowPosition = rollDiceAndMove(yellowImage, yellowIndex, yellowLeftPosition, yellowTopPosition, names[1]);
     yellowIndex = yellowPosition[0];
     yellowLeftPosition = yellowPosition[1];
@@ -94,7 +98,8 @@ function rollDiceAndMove(image, index, leftPosition, topPosition, color) {
             topPosition = playerPosition[2]; 
             message = playerPosition[3];
         }
-    } else if(index+diceRoll == 100){ //Check for winning condiiton
+    } 
+    else if(index+diceRoll == 100){ //Check for winning condiiton
         index = 100;
 	    winner.innerHTML = color + ' wins! (Click to go back to home page)';
         winner.style.visibility = "visible";
@@ -103,7 +108,8 @@ function rollDiceAndMove(image, index, leftPosition, topPosition, color) {
         document.getElementById(redButton).style.visibility = "hidden";
         document.getElementById(yellowButton).style.visibility = "hidden";
         return [index, leftPosition, topPosition, message];
-    } else {
+    } 
+    else {
         for (let i = 0; i < diceRoll; i++) {
             let playerPosition = [];
             playerPosition = movePlayer(index, leftPosition, topPosition); //TODO list elements of position
@@ -118,6 +124,16 @@ function rollDiceAndMove(image, index, leftPosition, topPosition, color) {
     leftPosition = playerPosition[1]; //TODO what is the left position
     topPosition = playerPosition[2]; //TODO what is the right position
     message = playerPosition[3];
+    if(index == 100){ //You need this piece of code if there is a ladder that ends at 100
+        index = 100;
+	    winner.innerHTML = color + ' wins! (Click to go back to home page)';
+        winner.style.visibility = "visible";
+        image.style.top = "160px";
+        image.style.left = "20px";
+        document.getElementById(redButton).style.visibility = "hidden";
+        document.getElementById(yellowButton).style.visibility = "hidden";
+        return [index, leftPosition, topPosition, message];
+    } 
     image.style.top = topPosition + "px";
     image.style.left = leftPosition + "px";
     let result = [index, leftPosition, topPosition, message];
@@ -173,7 +189,7 @@ function checkSnakeAndLadder(index, leftPosition, topPosition) {
         if (index == startLadder[i]) {
             let diff = endLadder[i] - startLadder[i];
             for (let j = 0; j < diff; j++) {
-                let playerPosition = movePlayer(index, leftPosition, topPosition);ß
+                let playerPosition = movePlayer(index, leftPosition, topPosition);
                 index = playerPosition[0];
                 leftPosition = playerPosition[1];
                 topPosition = playerPosition[2];
