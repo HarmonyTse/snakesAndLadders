@@ -47,7 +47,7 @@ let message = ''; //displays a message of the moves made after player clicks a b
 function moveRed() { //Function moves the red player when the red dice button is pressed
     diceRoll = Math.floor(Math.random() * 6) + 1; //Generates a random number between 1-6. Math.ceil won't work
     let redImage = document.getElementById("redPlayer"); 
-	let redPreviousIndex = redIndex; //redPreviousIndex keeps track of previous red index
+    let redPreviousIndex = redIndex; //redPreviousIndex keeps track of previous red index
     let names = updateNames(); //gets name user enters
     if(names[0] == "")
         names[0] = "Red"; //if user doesn't input name, the default name will be 'Red'
@@ -55,8 +55,10 @@ function moveRed() { //Function moves the red player when the red dice button is
     redIndex = redPosition[0];
     redLeftPosition = redPosition[1];
     redTopPosition = redPosition[2];
+    if(redPreviousIndex + diceRoll < 100){
 	message = String(redPosition[3]);
 	message += names[0] + ' moved from ' + String(redPreviousIndex) + ' to ' + String(redIndex) + ' after rolling ' + String(diceRoll) + '.';
+    }
     document.getElementById("redButton").style.visibility = "hidden"; //hides the red player's button to roll dice from the view of the user
     document.getElementById("yellowButton").style.visibility = "visible"; //displays yellow player's button to roll dice
     document.getElementById("output").innerHTML = message; //displays message to user
@@ -66,7 +68,7 @@ function moveRed() { //Function moves the red player when the red dice button is
 function moveYellow() { //Function moves the yellow player when the yellow dice button is pressed
     diceRoll = Math.floor(Math.random() * 6) + 1; 
     let yellowImage = document.getElementById("yellowPlayer"); 
-	let yellowPreviousIndex = yellowIndex;
+    let yellowPreviousIndex = yellowIndex;
     let names = updateNames();
     if(names[1] == "")
         names[1] = "Yellow";
@@ -74,8 +76,10 @@ function moveYellow() { //Function moves the yellow player when the yellow dice 
     yellowIndex = yellowPosition[0];
     yellowLeftPosition = yellowPosition[1];
     yellowTopPosition = yellowPosition[2];
+    if(yellowPreviousIndex+diceRoll < 100){
 	message = String(yellowPosition[3]);
 	message += names[1] + ' moved from ' + String(yellowPreviousIndex) + ' to ' + String(yellowIndex) + ' after rolling ' + String(diceRoll) + '.';
+    }
     document.getElementById("redButton").style.visibility = "visible"; //displays red player's button to roll dice
     document.getElementById("yellowButton").style.visibility = "hidden"; //hides the yellow player's button to roll dice from the view of the user
     document.getElementById("output").innerHTML = message;
@@ -98,6 +102,7 @@ function rollDiceAndMove(image, index, leftPosition, topPosition, color) {
             topPosition = playerPosition[2]; 
             message = playerPosition[3];
         }
+	message = name + " bounced back " + (currentIndex+diceRoll-100) + ", after rolling " + diceRoll + ".";
     } 
     else if(index+diceRoll == 100){ //Check for winning condiiton
         index = 100;
