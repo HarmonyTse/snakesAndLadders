@@ -147,11 +147,11 @@ function rollDiceAndMove(image, index, leftPosition, topPosition, name) {
 
 function movePlayer(index, leftPosition, topPosition) {
     if (gridTop.includes(index)) {
-        topPosition -= 80; // TODO: Make constant for the magic number 80
+        topPosition -= 80; //move player image up 80 pixels
     } else if (gridLeft.includes(index)) {
-        leftPosition -= 80;
+        leftPosition -= 80;//move player image left 80 pixels
     } else if (gridRight.includes(index)) {
-        leftPosition += 80;
+        leftPosition += 80;//move player image right 80 pixels
     }
     index++;
     let result = [index, leftPosition, topPosition];
@@ -163,45 +163,45 @@ function movePlayerDown(index, leftPosition, topPosition) {
     if (gridTop.includes(index)) {
         topPosition += 80; //move player image down by 80 pixels
     } else if (gridLeft.includes(index)) {
-        leftPosition += 80;
+        leftPosition += 80;//moves player image right by 80 pixels
     } else if (gridRight.includes(index)) {
-        leftPosition -= 80;
+        leftPosition -= 80;//moves player image left by 80 pixels
     }
-    let result = [index, leftPosition, topPosition];
+    let result = [index, leftPosition, topPosition];//creates an array, so that it can return/update multiple variables
     return result;
 }
 
 // TODO: Add comment for each function
-function checkSnakeAndLadder(index, leftPosition, topPosition, name) {
+function checkSnakeAndLadder(index, leftPosition, topPosition, name) { //this function checks if the index matches any snakesand moves the player accordingly on the board
     let message = ''; // Declare message outside of loops to make it accessible for both conditions
   
-    for (let i = 0; i < startSnake.length; i++) {
+    for (let i = 0; i < startSnake.length; i++) {//the for loop runs through startSnake to check if the index matches any of the snakes
         if (index == startSnake[i]) {
             let diff = startSnake[i] - endSnake[i];
             for (let j = 0; j < diff; j++) {
-                let playerPosition = movePlayerDown(index, leftPosition, topPosition);
-                index = playerPosition[0];
+                let playerPosition = movePlayerDown(index, leftPosition, topPosition);//if the index matches startSnake[i], then the function will move the player to endSnake[i]
+                index = playerPosition[0];//each value returned will be assigned to update the position
                 leftPosition = playerPosition[1];
                 topPosition = playerPosition[2];
             }
-            message = "Oh no! " + name + " got eaten by a snake!";
+            message = "Oh no! " + name + " got eaten by a snake!";//the message is updated allowing users to know what has happened
         }
     }
     
 
 
-    for (let i = 0; i < startLadder.length; i++) {
+    for (let i = 0; i < startLadder.length; i++) {//the same logic from the snake is applied to the ladders, as it searches for a match
         if (index == startLadder[i]) {
             let diff = endLadder[i] - startLadder[i];
             for (let j = 0; j < diff; j++) {
-                let playerPosition = movePlayer(index, leftPosition, topPosition);
-                index = playerPosition[0];
+                let playerPosition = movePlayer(index, leftPosition, topPosition);//once a match is found then it calls movePlayer() until it has reached its intended position
+                index = playerPosition[0];//each value is assigned to update the position
                 leftPosition = playerPosition[1];
                 topPosition = playerPosition[2];
             }
-            message = "Yay! " + name + " moved up a ladder!";
+            message = "Yay! " + name + " moved up a ladder!";//the message is also updated, so users know that their player has gone up a ladder
         }
     }  
-    let result = [index, leftPosition, topPosition, message];
-    return result; 
+    let result = [index, leftPosition, topPosition, message];// all these values are put into an array
+    return result; //and the values are returned to update the variables globally
 }
