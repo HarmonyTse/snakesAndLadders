@@ -21,51 +21,51 @@ function updateNames(){ //This function changes the names of the buttons through
 }
 
 // TODO: Describe the use of grid
-let gridTop = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+let gridTop = [10, 20, 30, 40, 50, 60, 70, 80, 90] //squares on gameboard where players have to move up to get to the next square
 let gridLeft = [11, 12, 13, 14, 15, 16, 17, 18, 19, 31,
     32, 33, 34, 35, 36, 37, 38, 39, 51, 52, 53, 54, 55, 56, 
     57, 58, 59, 71, 72, 73, 74, 75, 76, 77, 78, 79, 91, 92,
-    93, 94, 95, 96, 97, 98, 99]
+    93, 94, 95, 96, 97, 98, 99] //squares on gameboard where players have to move left to get to the next square
 let gridRight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 21, 22, 23, 24, 
     25, 26, 27, 28, 29, 41, 42, 43, 44, 45, 46, 47, 48, 49, 
     61, 62, 63, 64, 65, 66, 67, 68, 69, 81, 82, 83, 84, 85,
-    86, 87, 88, 89]
+    86, 87, 88, 89] //squares on gameboard where players have to more right to get to the next square
 
-let redLeftPosition = 20;
-let redTopPosition = 870;
-let yellowLeftPosition = 20;
-let yellowTopPosition = 870;
-let redIndex = 1;
-let yellowIndex = 1;
-let diceRoll = 0;
-let startSnake = [25, 41, 46, 48, 88, 90, 96, 99];
-let endSnake = [7, 5, 9, 11, 55, 31, 44, 23];
-let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81];
-let endLadder = [21, 50, 36, 57, 53, 76, 63, 87, 93, 97, 100];
-let message = '';
+let redLeftPosition = 20; //starting left position of red player on the game board
+let redTopPosition = 870; //starting top position of red player on game board
+let yellowLeftPosition = 20; //starting left position of yellow player on the game board
+let yellowTopPosition = 870; //starting top position of red player on the game board
+let redIndex = 1; //starting square of the red player
+let yellowIndex = 1; //starting square of the yellow player
+let diceRoll = 0; //declaring a variable to roll dice
+let startSnake = [25, 41, 46, 48, 88, 90, 96, 99]; //squares on the gameboard which mark the heads of the snake
+let endSnake = [7, 5, 9, 11, 55, 31, 44, 23]; //squares on the gameboard which mark the tails of the snake
+let startLadder = [3, 10, 14, 24, 35, 54, 60, 69, 71, 78, 81]; //squares on the gameboard which mark the bottom of the ladder
+let endLadder = [21, 50, 36, 57, 53, 76, 63, 87, 93, 97, 100]; //squares on the gameboard which mark the top of the ladder
+let message = ''; //displays a message of the moves made after player clicks a button to roll dice
 
-function moveRed() {
-    diceRoll = Math.floor(Math.random() * 6) + 1; // TODO: Add a note that math.ceil will not work
-    let redImage = document.getElementById("redPlayer");
-	let redPreviousIndex = redIndex;
-    let names = updateNames();
+function moveRed() { //Function moves the red player when the red dice button is pressed
+    diceRoll = Math.floor(Math.random() * 6) + 1; //Generates a random number between 1-6. Math.ceil won't work
+    let redImage = document.getElementById("redPlayer"); 
+	let redPreviousIndex = redIndex; //redPreviousIndex keeps track of previous red index
+    let names = updateNames(); //gets name user enters
     if(names[0] == "")
-        names[0] = "Red";
-    let redPosition = rollDiceAndMove(redImage, redIndex, redLeftPosition, redTopPosition, names[0]);
+        names[0] = "Red"; //if user doesn't input name, the default name will be 'Red'
+    let redPosition = rollDiceAndMove(redImage, redIndex, redLeftPosition, redTopPosition, names[0]); //function returns an array
     redIndex = redPosition[0];
     redLeftPosition = redPosition[1];
     redTopPosition = redPosition[2];
 	message = String(redPosition[3]);
 	message += names[0] + ' moved from ' + String(redPreviousIndex) + ' to ' + String(redIndex) + ' after rolling ' + String(diceRoll) + '.';
-    document.getElementById("redButton").style.visibility = "hidden";
-    document.getElementById("yellowButton").style.visibility = "visible";
-    document.getElementById("output").innerHTML = message;
-	message = '';
+    document.getElementById("redButton").style.visibility = "hidden"; //hides the red player's button to roll dice from the view of the user
+    document.getElementById("yellowButton").style.visibility = "visible"; //displays yellow player's button to roll dice
+    document.getElementById("output").innerHTML = message; //displays message to user
+	message = ''; //resets message
 }
 
-function moveYellow() {
-    diceRoll = Math.floor(Math.random() * 6) + 1; //Explain how this functions
-    let yellowImage = document.getElementById("yellowPlayer"); //TODO this assigns a variable to the image from html
+function moveYellow() { //Function moves the yellow player when the yellow dice button is pressed
+    diceRoll = Math.floor(Math.random() * 6) + 1; 
+    let yellowImage = document.getElementById("yellowPlayer"); 
 	let yellowPreviousIndex = yellowIndex;
     let names = updateNames();
     if(names[1] == "")
@@ -76,15 +76,15 @@ function moveYellow() {
     yellowTopPosition = yellowPosition[2];
 	message = String(yellowPosition[3]);
 	message += names[1] + ' moved from ' + String(yellowPreviousIndex) + ' to ' + String(yellowIndex) + ' after rolling ' + String(diceRoll) + '.';
-    document.getElementById("redButton").style.visibility = "visible";
-    document.getElementById("yellowButton").style.visibility = "hidden";
+    document.getElementById("redButton").style.visibility = "visible"; //displays red player's button to roll dice
+    document.getElementById("yellowButton").style.visibility = "hidden"; //hides the yellow player's button to roll dice from the view of the user
     document.getElementById("output").innerHTML = message;
 	message = '';
 }
 
 
 function rollDiceAndMove(image, index, leftPosition, topPosition, color) {
-    let winner = document.getElementById("winner");
+    let winner = document.getElementById("winner"); //button that appears when player reaches 100
     
     if(index+diceRoll > 100){
         let currentIndex = index;
