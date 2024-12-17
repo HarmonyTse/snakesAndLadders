@@ -106,12 +106,12 @@ function rollDiceAndMove(image, index, leftPosition, topPosition, name) {
     } 
     else if(index+diceRoll == 100){ //Check for winning condiiton
         index = 100;
-	    winner.innerHTML = name + ' wins! (Click to go back to home page)';
+	winner.innerHTML = name + ' wins! (Click to go back to home page)';
         winner.style.visibility = "visible";
         image.style.top = "160px";
         image.style.left = "20px";
-        document.getElementById(redButton).style.visibility = "hidden";
-        document.getElementById(yellowButton).style.visibility = "hidden";
+        document.getElementById("redButton").style.visibility = "hidden";
+        document.getElementById("yellowButton").style.visibility = "hidden";
         return [index, leftPosition, topPosition, message];
     } 
     else {
