@@ -5,14 +5,21 @@
     <link rel="stylesheet" href="snakesAndLadders.css">
     <script src = "snakesAndLadders.js"></script>
   </head>
-  <body onload = "updateNames()">
+  <body onload = "updateNames()"> <!--The function updateNames is called-->
     <h1 id="title">Snakes and Ladders (2 Player Game)</h1>
-    <button id = "redButton" onclick = "moveRed()">Red</button>
-    <button id = "yellowButton" onclick = "moveYellow()">Yellow</button> 
-    <img id = "board" src = "snakesAndLaddersGameBoard.png">
-    <img id = "redPlayer" src = "redPlayer.png">
-    <img id = "yellowPlayer" src = "yellowPlayer.png">
-    <button id = "winner" onclick= "window.location.href='index.html'">You win! (Click here to go back to home page)</button>
+    <button id = "redButton" onclick = "moveRed()">Red</button> <!--The function moveRed is called when red button is clicked-->
+    <button id = "yellowButton" onclick = "moveYellow()">Yellow</button> <!--The function moveYellow is called when yellow button is clicked-->
+    <img id = "board" src = "snakesAndLaddersGameBoard.png"> <!--Displays gameboard image-->
+    <img id = "redPlayer" src = "redPlayer.png"> <!--Displays red player image-->
+    <img id = "yellowPlayer" src = "yellowPlayer.png"> <!--Displays yellow player image-->
+    <button id = "winner" onclick= "window.location.href='index.html'">You win! (Click here to go back to home page)</button> <!--Links button to index.html-->
     <p id = "output"></p>
+    <h2 id = "gamePageDirections"> Game rules: <br> <!--Displays directions on html page-->
+      (1) Both players start at square 1. <br>
+      (2) Players take turns rolling the dice and moving their game piece forward the number of squares shown on the dice.<br> 
+      (3) If a player lands on the bottom of a ladder, they must climb the ladder to the top square. <br> 
+      (4) If a player lands on the head of a snake, they must slide down to the tail of the snake. <br>
+      (5) The player must roll the exact number to get to square 100 to win the game. (If players don't roll exact amount needed to 100, they will bounce back)<br>
+    </h2>
   </body>
 </html>

@@ -1,1 +1,3 @@
-https://pngtree.com/so/long-snake-clipart
+Links to Images Used for Snakes, Ladders, and Gameboard:
+  1) https://pngtree.com/ (For the gameboard and the snakes and ladders on the gameboard)
+  2) https://www.dreamstime.com/illustration/snakes-ladders.html (For the snake image on index.html)

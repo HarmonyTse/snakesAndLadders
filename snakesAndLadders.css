@@ -1,3 +1,9 @@
+#snakeClimbingLadder {
+	position: absolute;
+	top: 40px;
+	left: 1100px;
+	width: 300px;
+}
 #board{
 	position: absolute;
 	z-index: 0;
@@ -33,7 +39,7 @@
 	background-color: yellow;
 	font-size: 20px;
 	position: absolute;
-	left: 700px;
+	left: 650px;
 }
 
 #redButton{
@@ -47,8 +53,20 @@
 }
 
 #directions{
-	font-family: sans-serif;
+	font-family: "Calibri", sans-serif;
 	font-size: 25px;
+	font-weight: lighter;
+}
+
+#gamePageDirections{
+	font-size: 30px;
+	background-color: antiquewhite;
+	color: black;
+	position: absolute;
+	top: 200px;
+	left: 850px;
+	font-weight: lighter;
+	right: 30px;
 }
 
 #winner{
@@ -57,10 +75,11 @@
 	left: 15px;
 	background-color: rgb(110,201,253);
 	z-index: 2;
-	font-size: 40px;
+	font-size: 100px;
 	font-family: sans-serif;
 	visibility: hidden;
 	padding: 80px 30px 80px 30px;
+	width: 800px;
 }
 
 #output{
